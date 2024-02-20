@@ -78,6 +78,10 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       console.log('[joined] room:' + data.room + ' name: ' + data.name);
   });
 
+  socket.on('clearRooms', data => {
+    this.rooms = {}
+  })
+
   /** OFFER */
   socket.on('offer', (sdp: any) => {
     socket.broadcast.emit('getOffer', sdp);
